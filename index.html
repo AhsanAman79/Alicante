@@ -39,7 +39,7 @@
       color: white;
       background:
         linear-gradient(180deg, rgba(13, 32, 41, .18), rgba(13, 32, 41, .75)),
-        url("https://images.unsplash.com/photo-1565881606991-789a8dff9dbb?auto=format&fit=crop&w=1800&q=80") center/cover;
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Playa_del_Postiguet_2.jpg/1280px-Playa_del_Postiguet_2.jpg") center/cover;
     }
 
     .hero-inner {
@@ -222,6 +222,31 @@
       border-top: 5px solid var(--sun);
     }
 
+    .place-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .place {
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdfd;
+    }
+
+    .place strong {
+      font-size: 1rem;
+    }
+
+    .place p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
     .secret-panel {
       border-top: 5px solid #7b6aa8;
     }
@@ -321,6 +346,7 @@
         <a class="pill" href="#plan">Tagesplan</a>
         <a class="pill" href="#buchten">Buchten</a>
         <a class="pill" href="#essen">Essen & Cafés</a>
+        <a class="pill" href="#orte">Orte</a>
         <a class="pill" href="#maps">Karte</a>
       </div>
     </div>
@@ -592,6 +618,178 @@
             <span class="tag green">Spanisch leicht</span>
             <h3>Gute Optionen</h3>
             <p>Arroz de marisco, gegrillter Fisch, Patatas bravas ohne Fleischsauce, Pimientos de padrón, Salate, Gazpacho, Tortilla, vegetarische Tapas.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="orte">
+      <div class="section-title">
+        <h2>Kuratiert: Orte</h2>
+        <p class="note">Vor dem Losgehen kurz aktuelle Maps-Bewertungen prüfen: unter 4,1 oder viele neue Service-Beschwerden = weiterziehen.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Cafés</span>
+            <h3>Cool sitzen & guter Kaffee</h3>
+            <div class="place-list">
+              <div class="place">
+                <strong>Madness Coffee</strong>
+                <p>Specialty-Coffee-Kandidat, gut für Cappuccino/Flat White statt nur süßem Touri-Kaffee.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Madness+Coffee+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Sip and Wonder</strong>
+                <p>Gute Wahl für entspanntes Frühstücks-/Café-Gefühl nahe Zentrum.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Sip+and+Wonder+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Baker & Co</strong>
+                <p>Für Gebäck, Brunch und einen einfachen, angenehmen Start in den Tag.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Baker+%26+Co+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Bodhi Green</strong>
+                <p>Vegetarisch/vegan, solide Ausweichoption, wenn ihr leicht essen wollt.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Bodhi+Green+Alicante">Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag food">Frühstück</span>
+            <h3>Halal-freundlich frühstücken</h3>
+            <div class="place-list">
+              <div class="place">
+                <strong>Falafelmanía</strong>
+                <p>Vegetarisch/levantinisch denken: Falafel, Hummus, Salate. Praktisch, weil ohne Fleischrisiko.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Falafelmania+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Restaurante Damasco</strong>
+                <p>Syrische/arabische Richtung. Vor Ort nach halal Fleisch fragen; vegetarische Mezze sind meist easy.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Damasco+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Tandoori House</strong>
+                <p>Indisch/pakistanische Richtung, eher Lunch/Dinner, aber gut als halal-orientierter Backup.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Tandoori+House+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Mercado Central</strong>
+                <p>Für Obst, Brot, Käse, Oliven, Säfte und einen eigenen Frühstücks-Mix ohne komplizierte Zutaten.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Mercado+Central+Alicante">Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag sun">Mocktails</span>
+            <h3>Alkoholfrei trinken</h3>
+            <div class="place-list">
+              <div class="place">
+                <strong>La Milagrosa Rooftop</strong>
+                <p>Schöne Aussicht, gut für einen alkoholfreien Sundowner. Direkt “sin alcohol” bestellen.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=La+Milagrosa+Rooftop+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>SOHO Mar</strong>
+                <p>Meerblick und Urlaubsgefühl. Eher wegen Lage und Atmosphäre, nicht für Gourmet-Anspruch.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=SOHO+Mar+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Noray Café Bar</strong>
+                <p>Am Hafen, gut für alkoholfreie Drinks, Kaffee oder Limonade mit Blick aufs Wasser.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Noray+Cafe+Bar+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Marmarela</strong>
+                <p>Stylischer Hafen-Spot; nur wählen, wenn ihr Lounge/Beachclub-Vibe wollt, nicht ruhiges Café.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Marmarela+Alicante">Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag green">Sehen</span>
+            <h3>Sehenswürdigkeiten</h3>
+            <div class="place-list">
+              <div class="place">
+                <strong>Castillo de Santa Bárbara</strong>
+                <p>Morgens oder vor Sonnenuntergang. Mittags bei 30+ Grad vermeiden.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Castillo+de+Santa+Barbara+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Barrio Santa Cruz</strong>
+                <p>Weiße Häuser, enge Gassen, Fotospots. Früh oder abends am schönsten.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Barrio+Santa+Cruz+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Explanada de España</strong>
+                <p>Palmen, Mosaikboden, Hafenflair. Gut für Abendspaziergang.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Explanada+de+Espana+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>MACA & Basilica Santa María</strong>
+                <p>Schön kompakt in der Altstadt, gut als Hitzepause mit Kultur.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=MACA+Alicante+Basilica+Santa+Maria">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Tabarca</strong>
+                <p>Klares Wasser und Inselgefühl. Bootzeiten am Morgen nochmal checken.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Tabarca+ferry+Alicante">Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Meer-Cafés</span>
+            <h3>Cafés direkt am Wasser</h3>
+            <div class="place-list">
+              <div class="place">
+                <strong>SOHO Mar</strong>
+                <p>Direkt am Postiguet, bequem für Pause nach Strand oder Altstadt.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=SOHO+Mar+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Noray Café Bar</strong>
+                <p>Hafenblick, leichter Stopp für Kaffee/Drink ohne großen Umweg.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Noray+Cafe+Bar+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Moments Bar, Playa San Juan</strong>
+                <p>Guter Kandidat für Kaffee, kalte Drinks und Strandpause nach den Calas.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Moments+Bar+Playa+San+Juan+Alicante">Google Maps</a>
+              </div>
+              <div class="place">
+                <strong>Niza, Playa San Juan</strong>
+                <p>Old-school Strandlage, eher für unkomplizierten Meeresblick als hippe Ästhetik.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Niza+Playa+San+Juan+Alicante">Google Maps</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card heat">
+          <div class="card-body">
+            <span class="tag sun">Qualitätsfilter</span>
+            <h3>So vermeidet ihr Hype-Fallen</h3>
+            <ul>
+              <li>Neueste Bewertungen lesen, nicht nur Sterne.</li>
+              <li>Bei vielen Beschwerden über Service, Wartezeit oder kaltes Essen: weiterziehen.</li>
+              <li>Bei halal immer konkret fragen: “La carne es halal?”</li>
+              <li>Bei Mocktails fragen: “Cóctel sin alcohol, no cerveza, no vino.”</li>
+            </ul>
           </div>
         </article>
       </div>
