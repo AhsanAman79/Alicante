@@ -222,6 +222,75 @@
       border-top: 5px solid var(--sun);
     }
 
+    .secret-panel {
+      border-top: 5px solid #7b6aa8;
+    }
+
+    .secret-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .secret-form input {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 11px;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .secret-form button {
+      min-height: 42px;
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font: inherit;
+      font-weight: 850;
+      color: #fff;
+      background: var(--sea);
+      cursor: pointer;
+    }
+
+    .secret-result {
+      display: none;
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f7fbfb;
+    }
+
+    .secret-result dl {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 8px 12px;
+      margin: 0;
+    }
+
+    .secret-result dt {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .secret-result dd {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+
+    .secret-message {
+      min-height: 24px;
+      margin: 10px 0 0;
+      color: var(--coral);
+      font-weight: 750;
+    }
+
     .footer {
       width: min(980px, calc(100% - 32px));
       margin: 0 auto;
@@ -233,6 +302,7 @@
       .hero { min-height: 82vh; }
       .grid, .split { grid-template-columns: 1fr; }
       .section-title { display: block; }
+      .secret-form { grid-template-columns: 1fr; }
       .day {
         grid-template-columns: 1fr;
         gap: 4px;
@@ -295,6 +365,33 @@
           </div>
         </article>
       </div>
+    </section>
+
+    <section id="hotelzugang">
+      <div class="section-title">
+        <h2>Hotel-Zugang</h2>
+        <p class="note">Verschlüsselt auf dem Gerät entschlüsseln.</p>
+      </div>
+      <article class="card secret-panel">
+        <div class="card-body">
+          <span class="tag food">Privat</span>
+          <h3>Buchungscode & PIN anzeigen</h3>
+          <p>Die Zugangsdaten sind nicht im Klartext in dieser Seite gespeichert. Passwort eingeben und nur bei Bedarf anzeigen.</p>
+          <form class="secret-form" id="secret-form">
+            <input id="secret-password" type="password" autocomplete="current-password" placeholder="Passwort">
+            <button type="submit">Anzeigen</button>
+          </form>
+          <p class="secret-message" id="secret-message" aria-live="polite"></p>
+          <div class="secret-result" id="secret-result">
+            <dl>
+              <dt>Buchungs-ID</dt>
+              <dd id="booking-id"></dd>
+              <dt>PIN</dt>
+              <dd id="building-pin"></dd>
+            </dl>
+          </div>
+        </div>
+      </article>
     </section>
 
     <section id="plan">
@@ -523,5 +620,71 @@
 
     <p class="footer">Stand: Juni 2026. Öffnungszeiten, Bootzeiten und Verkehr rund um Hogueras bitte am jeweiligen Morgen nochmal prüfen.</p>
   </main>
+  <script>
+    const hotelSecret = {
+      kdf: "PBKDF2-SHA256",
+      iterations: 250000,
+      salt: "GWsSKCcHR1Syx3lQbdtS6Q==",
+      iv: "i9G3H/alF6pL0l4i",
+      data: "V51Wu4Okg61t6Jjk/1UW2yuxFW1k6ewd6oHWGMvAJDxk7iJMAt+jMusPX4CkVBMOY+9FUN1f1qO1b4smz+cWeA=="
+    };
+
+    const fromBase64 = (value) => {
+      const binary = atob(value);
+      const bytes = new Uint8Array(binary.length);
+      for (let index = 0; index < binary.length; index += 1) {
+        bytes[index] = binary.charCodeAt(index);
+      }
+      return bytes;
+    };
+
+    async function decryptHotelSecret(password) {
+      const encoder = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        encoder.encode(password),
+        "PBKDF2",
+        false,
+        ["deriveKey"]
+      );
+      const key = await crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: fromBase64(hotelSecret.salt),
+          iterations: hotelSecret.iterations,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["decrypt"]
+      );
+      const plainBytes = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: fromBase64(hotelSecret.iv) },
+        key,
+        fromBase64(hotelSecret.data)
+      );
+      return JSON.parse(new TextDecoder().decode(plainBytes));
+    }
+
+    document.getElementById("secret-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const passwordInput = document.getElementById("secret-password");
+      const message = document.getElementById("secret-message");
+      const result = document.getElementById("secret-result");
+      message.textContent = "";
+      result.style.display = "none";
+
+      try {
+        const secret = await decryptHotelSecret(passwordInput.value);
+        document.getElementById("booking-id").textContent = secret.bookingId;
+        document.getElementById("building-pin").textContent = secret.pin;
+        result.style.display = "block";
+        passwordInput.value = "";
+      } catch (error) {
+        message.textContent = "Passwort stimmt nicht oder der Browser kann die Daten nicht entschlüsseln.";
+      }
+    });
+  </script>
 </body>
 </html>
